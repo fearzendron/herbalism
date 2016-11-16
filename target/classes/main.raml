@@ -1,0 +1,90 @@
+#%RAML 0.8
+---
+title: Sample API
+
+/species:
+  description: |
+    This resourse get all data of species
+  get: 
+    queryParameters: 
+      s:
+        description: The search parameter to get the species 
+        type: string
+        maxLength: 255
+        required: false
+        example: Tulipa
+      fromCategory:
+        description: The category id of the species
+        type: integer
+        required: false
+        example: 2
+        
+    responses:
+      200: 
+        body: 
+          application/json: 
+            example: |
+              [
+                {
+                  "specie_id": "0000002",
+                  "name": "Rosa",
+                  "category_id": "2",
+                  "created_at": "2016-11-20 00:00:00"
+                },{
+                  "specie_id": "0000003",
+                  "name": "Lenti",
+                  "category_id": "2",
+                  "created_at": "2016-11-20 00:00:00"
+                }
+              ] 
+  post:
+    body: 
+      application/json: 
+        example: | 
+          {
+            "name": "Lenti",
+            "category_id": "2",
+            "created_at": "2016-11-20 00:00:00"
+          }  
+    responses: 
+      201: 
+        body: 
+          application/json: 
+            example: |
+              {
+                "specie_id": "0000003",
+                "name": "Lenti",
+                "category_id": "2",
+                "created_at": "2016-11-20 00:00:00"
+              }  
+      200:
+        body: 
+          application/json: 
+            example: |
+              {
+                "message": "Error occured trying to create the specie in the database"
+              }  
+          
+  /{speciesID}:
+    get:
+      responses: 
+        200:
+          body: 
+            application/json: 
+              example: | 
+                {
+                  "specie_id": "0000003",
+                  "name": "Lenti",
+                  "category_id": "2",
+                  "created_at": "2016-11-20 00:00:00"
+                }
+    delete:
+      responses: 
+        200:
+          body: 
+            application/json: 
+              example: | 
+                {
+                  "message": "The specie was successuflly deleted"
+                }
+      

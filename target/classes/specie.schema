@@ -1,0 +1,19 @@
+{
+	"title": "Schema for Species",
+	"type": "object",
+	"properties": {
+		"specie_id": {
+			"type": "integer"
+		},
+		"name": {
+			"type": "string"
+		},
+		"category_id": {
+			"type": "integer"
+		},
+		"created_at": {
+			"type": "string"
+		}
+	},
+	"required": ["name", "category_id", "created_at"]
+}
